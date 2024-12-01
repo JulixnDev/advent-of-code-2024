@@ -1,13 +1,13 @@
-var list_left: Array<number> = [];
-var list_right: Array<number> = [];
+let list_left: Array<number> = [];
+let list_right: Array<number> = [];
 
 async function readInput() {
   const text: string = await Deno.readTextFile("day-one/input.txt");
 
-  var lines = text.split("\n");
+  const lines = text.split("\n");
 
   lines.forEach((line: string) => {
-    var values = line.split("   ");
+    const values = line.split("   ");
     list_left.push(Number.parseInt(values[0]));
     list_right.push(Number.parseInt(values[1]));
   });
@@ -19,10 +19,10 @@ async function runOne() {
   list_left = list_left.sort();
   list_right = list_right.sort();
 
-  var totalDistance = 0;
-  for (var i = 0; i < list_left.length; i++) {
-    var left = list_left[i];
-    var right = list_right[i];
+  let totalDistance = 0;
+  for (let i = 0; i < list_left.length; i++) {
+    const left = list_left[i];
+    const right = list_right[i];
     totalDistance += right > left ? right - left : left - right;
   }
   console.log(totalDistance);
@@ -31,15 +31,15 @@ async function runOne() {
 async function runTwo() {
   await readInput();
 
-  var tmp: Map<number, number> = new Map();
+  const numberStore: Map<number, number> = new Map();
 
-  var similarityScore = 0;
+  let similarityScore = 0;
 
   list_left.forEach((item: number) => {
-    if (!tmp.has(item))
-      tmp[item] = list_right.filter((it) => it == item).length;
+    if (!numberStore.has(item))
+      numberStore.set(item, list_right.filter((it) => it == item).length);
 
-    similarityScore += item * tmp[item];
+    similarityScore += item * numberStore.get(item)!;
   });
 
   console.log(similarityScore);
