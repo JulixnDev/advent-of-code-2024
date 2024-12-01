@@ -13,9 +13,7 @@ async function readInput() {
   });
 }
 
-async function runOne() {
-  await readInput();
-
+function runOne() {
   list_left = list_left.sort();
   list_right = list_right.sort();
 
@@ -25,12 +23,10 @@ async function runOne() {
     const right = list_right[i];
     totalDistance += right > left ? right - left : left - right;
   }
-  console.log(totalDistance);
+  return totalDistance;
 }
 
-async function runTwo() {
-  await readInput();
-
+function runTwo() {
   const numberStore: Map<number, number> = new Map();
 
   let similarityScore = 0;
@@ -42,7 +38,10 @@ async function runTwo() {
     similarityScore += item * numberStore.get(item)!;
   });
 
-  console.log(similarityScore);
+  return similarityScore;
 }
 
-runTwo();
+await readInput();
+
+console.log("Part one: " + runOne());
+console.log("Part two: " + runTwo());

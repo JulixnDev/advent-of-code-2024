@@ -1,5 +1,5 @@
 {
   "tasks": {
-    "day_one": "deno run --allow-read day-one/script.ts"
+    "day-one": "deno run --allow-read day-one/script.ts"
   }
 }
